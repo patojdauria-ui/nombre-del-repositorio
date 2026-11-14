@@ -1,36 +1,71 @@
-"""Funciones principales del blog: listar, buscar y filtrar."""
+from blog.datos import guardar_blog, perfil_autor
+from blog.menu import pedir_datos_post
 
 
-def listar_posts(lista):
-    """Muestra los datos de cada post de la lista recibida."""
-    if not lista:
-        print("No hay posts para mostrar.")
+def pedir_texto(mensaje):
+    """Pide texto por consola."""
+    return input(mensaje)
+
+
+def mostrar_posts(blog):
+    """Opción 1: muestra todos los posts del blog."""
+    blog.listar_posts()
+
+
+def buscar_posts(blog):
+    """Opción 2: pide un título, busca y muestra los resultados."""
+    termino = pedir_texto("Ingrese el titulo a buscar: ")
+    if termino is None:
         return
 
-    for post in lista:
-        print("\nTitulo:", post.get("titulo", "(sin titulo)"))
-        print("Contenido:", post.get("contenido", "(sin contenido)"))
-        print("Autor:", post.get("autor", {}).get("nombre", "(sin autor)"))
-        print("Tags:", post.get("tags", "(sin tags)"))
-        print("Estado:", post.get("estado", "(sin estado)"))
+    resultados = blog.buscar_por_titulo(termino)
+    if resultados:
+        blog.listar_posts(resultados)
+    else:
+        print("No se encontraron posts con ese titulo.")
 
 
-def buscar_por_titulo(lista, termino):
-    """Retorna los posts cuyo título contiene el término (sin importar mayúsculas)."""
-    termino = termino.strip().lower()
-    resultados = []
-    for post in lista:
-        if termino in post.get("titulo", "").lower():
-            resultados.append(post)
-    return resultados
+def filtrar_posts(blog):
+    """Opción 3: pide una etiqueta, filtra y muestra los resultados."""
+    tag = pedir_texto("Ingrese la etiqueta a buscar: ")
+    if tag is None:
+        return
+
+    resultados = blog.filtrar_por_tag(tag)
+    if resultados:
+        blog.listar_posts(resultados)
+    else:
+        print("No se encontraron posts con esa etiqueta.")
 
 
-def filtrar_por_tag(lista, tag):
-    """Retorna los posts que tienen la etiqueta indicada."""
-    tag = tag.strip().lower()
-    resultados = []
-    for post in lista:
-        tags = post.get("tags", [])
-        if tag in [t.lower() for t in tags]:
-            resultados.append(post)
-    return resultados
+def crear_post_desde_consola(blog):
+    """Opción 4: pide los datos y crea el post. Retorna True si se agregó al blog."""
+    datos = pedir_datos_post()
+    if datos is None:
+        return False
+
+    try:
+        post = blog.crear_post(autor=perfil_autor, **datos)
+    except ValueError as error:
+        print(f"No se pudo crear el post: {error}.")
+        return False
+
+    print(f"Post creado: {post}")
+    return True
+
+
+def validar_todos(blog):
+    """Opción 5: valida cada post del blog e imprime el resultado."""
+    for id_post, es_valido, motivo in blog.validar_posts():
+        if es_valido:
+            print(f"Post {id_post}: valido")
+        else:
+            print(f"Post {id_post}: INVALIDO ({motivo})")
+
+
+def guardar_posts(blog):
+    """Opción 6: guarda los posts en posts.json. Retorna True si se guardó bien."""
+    if guardar_blog(blog):
+        print("Posts guardados en posts.json")
+        return True
+    return False

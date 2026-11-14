@@ -1,0 +1,83 @@
+[
+    {
+        "id": 1,
+        "titulo": "primer uso con el excel",
+        "contenido": "uso de excel para analizar partidos y jugadores",
+        "autor": {
+            "nombre": "patricio",
+            "bio": "analista tactico tanto en empresa y en futbol",
+            "especialidad": "excel con power bi y en el futbol con livetag",
+            "licencia": [
+                "licencia_pro"
+            ]
+        },
+        "tags": [
+            "excel"
+        ],
+        "estado": "enviado"
+    },
+    {
+        "id": 2,
+        "titulo": "que herramienta uso en el futbol",
+        "contenido": "uso de livetag para analizar partidos",
+        "autor": {
+            "nombre": "patricio",
+            "bio": "analista tactico tanto en empresa y en futbol",
+            "especialidad": "excel con power bi y en el futbol con livetag",
+            "licencia": [
+                "licencia_pro"
+            ]
+        },
+        "tags": [
+            "livetag"
+        ],
+        "estado": "archivado"
+    },
+    {
+        "id": 3,
+        "titulo": "que uso para analizar partidos",
+        "contenido": "uso de wyscout para analizar partidos y jugadores",
+        "autor": {
+            "nombre": "patricio",
+            "bio": "analista tactico tanto en empresa y en futbol",
+            "especialidad": "excel con power bi y en el futbol con livetag",
+            "licencia": [
+                "licencia_pro"
+            ]
+        },
+        "tags": null,
+        "estado": "borrador"
+    },
+    {
+        "id": 4,
+        "titulo": "que uso para graficar mediante los datos que tengo",
+        "contenido": "uso de power bi para graficar los datos que tengo",
+        "autor": {
+            "nombre": "patricio",
+            "bio": "analista tactico tanto en empresa y en futbol",
+            "especialidad": "excel con power bi y en el futbol con livetag",
+            "licencia": [
+                "licencia_pro"
+            ]
+        },
+        "tags": [
+            "powerbi"
+        ],
+        "estado": "enviado"
+    },
+    {
+        "id": 5,
+        "titulo": "pato",
+        "contenido": "genio",
+        "autor": {
+            "nombre": "patricio",
+            "bio": "analista tactico tanto en empresa y en futbol",
+            "especialidad": "excel con power bi y en el futbol con livetag",
+            "licencia": [
+                "licencia_pro"
+            ]
+        },
+        "tags": [],
+        "estado": "borrador"
+    }
+]
